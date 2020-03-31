@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ContentModelStore">
     <e p="C:\Users\Erik\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Erik\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Future-Games-Design-Patterns-master.997550361.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Erik\Documents\UnityProjects\Future-Games-Design-Patterns-master" t="IncludeRecursive">
+    <e p="C:\Users\Erik\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Future-Games-Design-Patterns-master.2054862121.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Erik\Documents\UnityProjects\DesignPatternsCourse\Future-Games-Design-Patterns-master" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="gameTester.cs" t="Include" />
+        <e p="Resources" t="Include">
+          <e p="MapSettings" t="Include">
+            <e p="map_1.txt" t="Include" />
+            <e p="map_2.txt" t="Include" />
+            <e p="map_3.txt" t="Include" />
+          </e>
+        </e>
         <e p="Scripts" t="Include">
           <e p="Production" t="Include">
             <e p="_Production.asmdef" t="Include" />
@@ -14,6 +23,8 @@
               </e>
             </e>
             <e p="Globals" t="Include">
+              <e p="MapBuilder.cs" t="Include" />
+              <e p="MapReader.cs" t="Include" />
               <e p="ProjectPaths.cs" t="Include" />
               <e p="TileType.cs" t="Include" />
               <e p="UnitType.cs" t="Include" />

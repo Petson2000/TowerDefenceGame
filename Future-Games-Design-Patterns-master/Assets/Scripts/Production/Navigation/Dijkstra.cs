@@ -5,7 +5,6 @@ using Tools;
 
 namespace AI
 {
-    //TODO: Implement IPathFinder using Dijsktra algorithm.
     public class Dijkstra : IPathFinder
     {
         public List<Vector2Int> accessable;

@@ -29,7 +29,7 @@ namespace Tests
                 { 0, 0, 1},
             };
         }
-        
+
         [Test]
         [TestCase(/*MapID*/ 1, /*xStart*/ 0, /*yStart*/ 0, /*xGoal*/ 2, /*yGoal*/ 2, /*Result*/ 5)]
         [TestCase(/*MapID*/ 1, /*xStart*/ 2, /*yStart*/ 2, /*xGoal*/ 0, /*yGoal*/ 0, /*Result*/ 5)]
