@@ -11,8 +11,10 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Production/Utils/TileMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Tests/TowerDefense/TowerDefense_Unit_Tests.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enemy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/gameTester.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Production/Navigation/Dijkstra.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Production/Globals/MapReader.cs" root0="FORCE_HIGHLIGHTING" />
@@ -26,9 +28,11 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Assets/Resources/MapSettings/map_1.txt" />
         <option value="$PROJECT_DIR$/Assets/gameTester.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Production/Utils/TileMethods.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Production/Globals/MapBuilder.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Production/Globals/MapReader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Production/Utils/TileMethods.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/EnemySpawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Enemy.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Production/Globals/MapBuilder.cs" />
       </list>
     </option>
   </component>
@@ -53,10 +57,10 @@
       <option name="pid" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15480">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="15480" />
+      <option name="pid" />
       <method v="2" />
     </configuration>
   </component>
@@ -72,6 +76,9 @@
       <updated>1585639058780</updated>
       <workItem from="1585639064434" duration="473000" />
       <workItem from="1585643790940" duration="11097000" />
+      <workItem from="1585661039736" duration="1017000" />
+      <workItem from="1585662236613" duration="881000" />
+      <workItem from="1585725612924" duration="7573000" />
     </task>
     <servers />
   </component>
@@ -85,7 +92,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

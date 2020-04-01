@@ -15,6 +15,8 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Enemy.cs" t="Include" />
+          <e p="EnemySpawner.cs" t="Include" />
           <e p="Production" t="Include">
             <e p="_Production.asmdef" t="Include" />
             <e p="Behaviours" t="Include">

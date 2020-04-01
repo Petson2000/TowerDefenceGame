@@ -8,10 +8,18 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private GameObject towerOne;
     [SerializeField] private GameObject obstacleTile;
     [SerializeField] private GameObject towerTwo;
+    [SerializeField] private GameObject startTile;
+    [SerializeField] private GameObject endTile; //Goal
 
     [SerializeField] private int cellSize = 2;
 
+    private bool isStartTile;
+
+    private List<GameObject> walkables = new List<GameObject>();
+    
     public TextAsset textAsset;
+    
+    [SerializeField] private GameObject enemyPrefab;
 
     private List<String> lines;
 
@@ -25,7 +33,7 @@ public class MapBuilder : MonoBehaviour
 
     public void BuildMap()
     {
-        for (int lineIndex = lines.Count - 1; lineIndex >= 0; lineIndex--)
+        for (int lineIndex = lines.Count - 1, rowIndex = 0; lineIndex >= 0; lineIndex--, rowIndex++)
         {
             string line = lines[lineIndex];
 
@@ -33,31 +41,47 @@ public class MapBuilder : MonoBehaviour
             {
                 char item = line[columnIndex];
 
-                float z = lineIndex * cellSize;
+                float z = rowIndex * cellSize;
                 float x = columnIndex * cellSize;
-                
-                GameObject objectType;
+
+                GameObject tileType;
+
                 switch (item)
                 {
                     case '1':
-                        objectType = obstacleTile;
+                        tileType = obstacleTile;
                         break;
-                    
                     case '2':
-                        objectType = towerOne;
+                        tileType = towerOne;
                         break;
-                    
                     case '3':
-                        objectType = towerTwo;
+                        tileType = towerTwo;
                         break;
-                    
+                    case '8':
+                        tileType = startTile;
+                        isStartTile = true;
+                        break;
+                    case'9':
+                        tileType = endTile;
+                        break;
                     default:
-                        objectType = pathTile;
+                        tileType = pathTile;
+                        walkables.Add(tileType);
                         break;
                 }
+                Instantiate(tileType, new Vector3(x, 0, z), Quaternion.identity);
                 
-                Instantiate(objectType, new Vector3(x, 0, z), Quaternion.identity);
+                if (isStartTile)
+                {
+                    Instantiate(enemyPrefab, new Vector3(x, 1, z), Quaternion.identity);
+                    isStartTile = false;
+                }
             }
         }
+    }
+
+    public List<GameObject> GetWalkableTiles()
+    {
+        return walkables;
     }
 }
