@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,15 +8,14 @@ namespace AI
 {
     public class Dijkstra : IPathFinder
     {
-        public List<Vector2Int> accessable;
+        public IEnumerable<Vector2Int> accessable;
 
         //Ancestor is previous position x and y. no need to check these again for a path.
 
-        public Dijkstra(List<Vector2Int> accessableTiles)
+        public Dijkstra(IEnumerable<Vector2Int> accessableTiles)
         {
             accessable = accessableTiles;
         }
-
         public IEnumerable<Vector2Int> FindPath(Vector2Int start, Vector2Int goal)
         {
             Vector2Int currentNode = start;
@@ -60,8 +60,8 @@ namespace AI
 
             if (ancestors.ContainsKey(goal)) //Found a path
             {
-                //Create for loop that goes backwards,
-
+                //Create for loop that goes backwards,    
+                
                 for (int i = ancestors.Count - 1; i >= 0; i--)
                 {
                     path.Add(currentNode);

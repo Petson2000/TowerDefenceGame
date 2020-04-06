@@ -5,10 +5,9 @@ using UnityEngine;
 public class gameTester : MonoBehaviour
 {
     public TextAsset textAsset;
-    void Start()
+    void Awake()
     {
-        MapReader reader = new MapReader();
-        reader.ReadFile(textAsset);
+
     }
 
     // Update is called once per frame

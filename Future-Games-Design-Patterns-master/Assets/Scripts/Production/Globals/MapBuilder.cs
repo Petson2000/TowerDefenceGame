@@ -14,25 +14,35 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private int cellSize = 2;
 
     private bool isStartTile;
+    private bool isEndTile;
+    private bool isWalkable;
 
-    private List<GameObject> walkables = new List<GameObject>();
-    
+    private GameObject startTileToSend;
+    private GameObject endTileToSend;
+
+    public Vector3 startPos;
+    public Vector3 endPos;
+
+    public List<Vector3> walkables = new List<Vector3>();
+
     public TextAsset textAsset;
+
+    public bool finishedBuilding = false;
     
     [SerializeField] private GameObject enemyPrefab;
 
     private List<String> lines;
 
-    void Start()
+    void Awake()
     {
-        MapReader reader = new MapReader();
-        lines = reader.ReadFile(textAsset);
-        Debug.Log(lines.Count);
         BuildMap();
     }
 
     public void BuildMap()
     {
+        MapReader reader = new MapReader();
+        lines = reader.ReadFile(textAsset);
+
         for (int lineIndex = lines.Count - 1, rowIndex = 0; lineIndex >= 0; lineIndex--, rowIndex++)
         {
             string line = lines[lineIndex];
@@ -59,28 +69,61 @@ public class MapBuilder : MonoBehaviour
                         break;
                     case '8':
                         tileType = startTile;
+                        isWalkable = true;
+                        startTileToSend = tileType;
                         isStartTile = true;
                         break;
-                    case'9':
+                    case '9':
                         tileType = endTile;
+                        isWalkable = true;
+                        isEndTile = true;
+                        endTileToSend = tileType;
                         break;
                     default:
                         tileType = pathTile;
-                        walkables.Add(tileType);
+                        isWalkable = true;
                         break;
                 }
+
                 Instantiate(tileType, new Vector3(x, 0, z), Quaternion.identity);
-                
+                if (isWalkable)
+                {
+                    walkables.Add(new Vector3(x, 0, z));
+                    isWalkable = false;
+                }
+                //Add position here instead, otherwise 0,0,0
                 if (isStartTile)
                 {
-                    Instantiate(enemyPrefab, new Vector3(x, 1, z), Quaternion.identity);
-                    isStartTile = false;
+                    startPos = new Vector3(x, 1, z);
+                }
+
+                if (isEndTile)
+                {
+                    endPos = new Vector3(x, 1, z);
                 }
             }
+
+            if (isStartTile)
+            {
+                Instantiate(enemyPrefab, startPos, Quaternion.identity);
+                isStartTile = false;
+            }
         }
+
+        finishedBuilding = true;
     }
 
-    public List<GameObject> GetWalkableTiles()
+    public GameObject GetStartTile()
+    {
+        return startTileToSend;
+    }
+
+    public GameObject GetEndTile()
+    {
+        return endTileToSend;
+    }
+
+    public List<Vector3> GetWalkableTiles()
     {
         return walkables;
     }

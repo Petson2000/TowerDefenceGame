@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    private List<Vector2Int> accessableTiles;
+    private List<Vector2> tilePositions;
     private void Start()
     {
-        IPathFinder pathFinder = new Dijkstra();
     }
-
+    
     private void Move()
     {
-        
     }
 }

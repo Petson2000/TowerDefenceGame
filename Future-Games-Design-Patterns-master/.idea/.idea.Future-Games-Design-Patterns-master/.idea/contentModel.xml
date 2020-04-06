@@ -17,6 +17,8 @@
         <e p="Scripts" t="Include">
           <e p="Enemy.cs" t="Include" />
           <e p="EnemySpawner.cs" t="Include" />
+          <e p="Move.cs" t="Include" />
+          <e p="ObjectConverter.cs" t="Include" />
           <e p="Production" t="Include">
             <e p="_Production.asmdef" t="Include" />
             <e p="Behaviours" t="Include">
@@ -51,6 +53,7 @@
           <e p="Tests" t="Include">
             <e p="_Tests.asmdef" t="Include" />
             <e p="TowerDefense" t="Include">
+              <e p="CoordinateParser.cs" t="Include" />
               <e p="TowerDefense_Unit_Tests.cs" t="Include" />
             </e>
             <e p="UniReact" t="Include">
