@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\Erik\.Rider2019.3\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\Erik\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Future-Games-Design-Patterns-master.2054862121.00" t="ExcludeRecursive" />
-    <e p="C:\Users\Erik\Documents\UnityProjects\DesignPatternsCourse\Future-Games-Design-Patterns-master" t="IncludeRecursive">
+    <e p="C:\Users\erikp\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\erikp\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Future-Games-Design-Patterns-master.1970887790.00" t="ExcludeRecursive" />
+    <e p="C:\Users\erikp\Documents\Unity Projects\TowerDefence\Future-Games-Design-Patterns-master" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="gameTester.cs" t="Include" />
@@ -15,9 +15,12 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Enemy.cs" t="Include" />
-          <e p="EnemySpawner.cs" t="Include" />
-          <e p="Move.cs" t="Include" />
+          <e p="Enemy" t="Include">
+            <e p="Enemy.cs" t="Include" />
+            <e p="EnemyBase.cs" t="Include" />
+            <e p="EnemySpawner.cs" t="Include" />
+            <e p="GetPath.cs" t="Include" />
+          </e>
           <e p="ObjectConverter.cs" t="Include" />
           <e p="Production" t="Include">
             <e p="_Production.asmdef" t="Include" />

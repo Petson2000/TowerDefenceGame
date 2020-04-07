@@ -8,69 +8,56 @@ namespace AI
 {
     public class Dijkstra : IPathFinder
     {
-        public IEnumerable<Vector2Int> accessable;
+        private readonly HashSet<Vector2Int> accessablePositions;
 
-        //Ancestor is previous position x and y. no need to check these again for a path.
-
-        public Dijkstra(IEnumerable<Vector2Int> accessableTiles)
+        public Dijkstra(IEnumerable<Vector2Int> accessables)
         {
-            accessable = accessableTiles;
+            accessablePositions = new HashSet<Vector2Int>(accessables);
         }
+
         public IEnumerable<Vector2Int> FindPath(Vector2Int start, Vector2Int goal)
         {
-            Vector2Int currentNode = start;
+            Dictionary<Vector2Int, Vector2Int?> ancestors = new Dictionary<Vector2Int, Vector2Int?>();
+            ancestors.Add(start, default);
 
-            Queue<Vector2Int> frontier = new Queue<Vector2Int>(new[] {currentNode});
-
-            Dictionary<Vector2Int, Vector2Int> ancestors = new Dictionary<Vector2Int, Vector2Int>()
-                {{currentNode, default}};
-
-            frontier.Enqueue(currentNode);
+            Queue<Vector2Int> frontier = new Queue<Vector2Int>();
+            frontier.Enqueue(start);
 
             while (frontier.Count > 0)
             {
-                currentNode = frontier.Dequeue();
+                Vector2Int current = frontier.Dequeue();
 
-                if (currentNode == goal)
+                if (current == goal)
                 {
                     break;
                 }
 
-                foreach (Vector2Int vec2Int in DirectionTools.Dirs)
+                foreach (Vector2Int dir in DirectionTools.Dirs)
                 {
-                    Vector2Int next = currentNode + vec2Int;
-                    if (accessable.Contains(next))
+                    Vector2Int next = current + dir;
+
+                    if (accessablePositions.Contains(next) && ancestors.ContainsKey(next) == false)
                     {
-                        if (!ancestors.ContainsKey(next))
-                        {
-                            frontier.Enqueue(next);
-                            ancestors.Add(next, currentNode);
-                        }
+                        ancestors[next] = current;
+                        frontier.Enqueue(next);
                     }
                 }
             }
 
-            if (!ancestors.ContainsKey(goal))
+            if (ancestors.ContainsKey(goal))
             {
-                //Path is not possible
-                return null;
-            }
-
-            List<Vector2Int> path = new List<Vector2Int>();
-
-            if (ancestors.ContainsKey(goal)) //Found a path
-            {
-                //Create for loop that goes backwards,    
+                List<Vector2Int> path = new List<Vector2Int>();
                 
-                for (int i = ancestors.Count - 1; i >= 0; i--)
+                for (Vector2Int? run = goal; run.HasValue; run = ancestors[run.Value])
                 {
-                    path.Add(currentNode);
-                    currentNode = ancestors.ElementAt(i).Key;
+                    path.Add(run.Value);
                 }
+
+                path.Reverse();
+                return path;
             }
 
-            path.Reverse();
-            return path;
+            return Enumerable.Empty<Vector2Int>();
         }
     }
 }

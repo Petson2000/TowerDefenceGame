@@ -17,9 +17,6 @@ public class MapBuilder : MonoBehaviour
     private bool isEndTile;
     private bool isWalkable;
 
-    private GameObject startTileToSend;
-    private GameObject endTileToSend;
-
     public Vector3 startPos;
     public Vector3 endPos;
 
@@ -69,15 +66,11 @@ public class MapBuilder : MonoBehaviour
                         break;
                     case '8':
                         tileType = startTile;
-                        isWalkable = true;
-                        startTileToSend = tileType;
                         isStartTile = true;
                         break;
                     case '9':
                         tileType = endTile;
-                        isWalkable = true;
                         isEndTile = true;
-                        endTileToSend = tileType;
                         break;
                     default:
                         tileType = pathTile;
@@ -95,32 +88,22 @@ public class MapBuilder : MonoBehaviour
                 if (isStartTile)
                 {
                     startPos = new Vector3(x, 1, z);
+                    walkables.Add(startPos);
+                    Instantiate(enemyPrefab, startPos, Quaternion.identity);
+                    isStartTile = false;
                 }
 
                 if (isEndTile)
                 {
-                    endPos = new Vector3(x, 1, z);
+                    endPos = new Vector3(x, 0, z);
+                    walkables.Add(endPos);
+                    isEndTile = false;
                 }
             }
 
-            if (isStartTile)
-            {
-                Instantiate(enemyPrefab, startPos, Quaternion.identity);
-                isStartTile = false;
-            }
         }
 
         finishedBuilding = true;
-    }
-
-    public GameObject GetStartTile()
-    {
-        return startTileToSend;
-    }
-
-    public GameObject GetEndTile()
-    {
-        return endTileToSend;
     }
 
     public List<Vector3> GetWalkableTiles()
