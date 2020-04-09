@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7898246051721273625
+--- !u!1 &2260024070787403289
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7898246051721273627}
-  - component: {fileID: 7898246051721273624}
+  - component: {fileID: 7075290379495846702}
+  - component: {fileID: 7962994951913999159}
   m_Layer: 0
   m_Name: MapBuilder
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7898246051721273627
+--- !u!4 &7075290379495846702
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7898246051721273625}
+  m_GameObject: {fileID: 2260024070787403289}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.239705, y: -0.3460641, z: -1.4307256}
+  m_LocalPosition: {x: 22.303913, y: -1.2182918, z: 6.635867}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7898246051721273624
+--- !u!114 &7962994951913999159
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7898246051721273625}
+  m_GameObject: {fileID: 2260024070787403289}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd3ed697c00fc4c468d9eeb7e9d4e62e, type: 3}
@@ -51,5 +51,9 @@ MonoBehaviour:
     type: 3}
   towerTwo: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
+  startTile: {fileID: 6189042043493516721, guid: ddaec73c1732b4af4b5f402d92b9f36f,
+    type: 3}
+  endTile: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5, type: 3}
   cellSize: 2
-  textAsset: {fileID: 4900000, guid: 515a4acbc149c3a43b934fb9110e387b, type: 3}
+  walkables: []
+  textAsset: {fileID: 4900000, guid: 2f8246b41c2107b40b372057cb22be65, type: 3}

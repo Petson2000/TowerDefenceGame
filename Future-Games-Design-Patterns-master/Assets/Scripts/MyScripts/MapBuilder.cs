@@ -10,28 +10,28 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private GameObject towerTwo;
     [SerializeField] private GameObject startTile;
     [SerializeField] private GameObject endTile; //Goal
-
     [SerializeField] private int cellSize = 2;
 
+    private Spawner spawner;
+    
     private bool isStartTile;
     private bool isEndTile;
     private bool isWalkable;
 
-    public Vector3 startPos;
-    public Vector3 endPos;
+    [System.NonSerialized]public Vector3 startPos;
+    [System.NonSerialized]public Vector3 endPos;
 
     public List<Vector3> walkables = new List<Vector3>();
 
     public TextAsset textAsset;
 
-    public bool finishedBuilding = false;
+    [System.NonSerialized]public bool finishedBuilding = false;
     
-    [SerializeField] private GameObject enemyPrefab;
-
     private List<String> lines;
 
-    void Awake()
+    void Start()
     {
+        spawner = FindObjectOfType<Spawner>();
         BuildMap();
     }
 
@@ -79,17 +79,17 @@ public class MapBuilder : MonoBehaviour
                 }
 
                 Instantiate(tileType, new Vector3(x, 0, z), Quaternion.identity);
+                
                 if (isWalkable)
                 {
                     walkables.Add(new Vector3(x, 0, z));
                     isWalkable = false;
                 }
-                //Add position here instead, otherwise 0,0,0
+                
                 if (isStartTile)
                 {
                     startPos = new Vector3(x, 1, z);
                     walkables.Add(startPos);
-                    Instantiate(enemyPrefab, startPos, Quaternion.identity);
                     isStartTile = false;
                 }
 
@@ -104,6 +104,7 @@ public class MapBuilder : MonoBehaviour
         }
 
         finishedBuilding = true;
+        spawner.StartCoroutine(spawner.Spawn(startPos));
     }
 
     public List<Vector3> GetWalkableTiles()

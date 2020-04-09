@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 public class Enemy : MonoBehaviour
 {
     public float speed;
     
     private GetPath pathGetter = null;
-    private MapBuilder builder = null;
 
     private Vector3 targetWaypoint;
     
@@ -18,8 +18,8 @@ public class Enemy : MonoBehaviour
     
     private void Start()
     {
-        pathGetter = FindObjectOfType<GetPath>();
-        builder = FindObjectOfType<MapBuilder>();
+        pathGetter = GetComponent<GetPath>();
+            
         path = pathGetter.CalculatePath();
     }
 
@@ -28,12 +28,21 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    private void Push()
+    {
+        
+    }
+
     private void Move()
     {
         targetPos = path[current];
 
         if (transform.position != targetPos)
         {
+            Vector3 dir = targetPos - transform.position;
+            Quaternion lookRotation = Quaternion.LookRotation(dir);
+            Vector3 rotation = lookRotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
             transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
 
@@ -46,7 +55,7 @@ public class Enemy : MonoBehaviour
 
             else
             {
-                Destroy(this.gameObject);
+                this.gameObject.SetActive(false);
             }
         }
 

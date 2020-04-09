@@ -57,7 +57,7 @@ public class GetPath : MonoBehaviour
         //Convert to Vector3
         foreach (Vector2Int vec2Int in path)
         {
-            convertedPath.Add(new Vector3(vec2Int.x * 2,0 ,vec2Int.y * 2));
+            convertedPath.Add(new Vector3(vec2Int.x * 2,1 ,vec2Int.y * 2));
         }
 
         return convertedPath;

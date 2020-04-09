@@ -15,11 +15,24 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
-          <e p="Enemy" t="Include">
-            <e p="Enemy.cs" t="Include" />
-            <e p="EnemyBase.cs" t="Include" />
-            <e p="EnemySpawner.cs" t="Include" />
-            <e p="GetPath.cs" t="Include" />
+          <e p="MyScripts" t="Include">
+            <e p="BuildTile.cs" t="Include" />
+            <e p="Enemy" t="Include">
+              <e p="Enemy.cs" t="Include" />
+              <e p="EnemySpawnManager.cs" t="Include" />
+              <e p="GetPath.cs" t="Include" />
+              <e p="Spawner.cs" t="Include" />
+            </e>
+            <e p="MapBuilder.cs" t="Include" />
+            <e p="Memory Pools" t="Include">
+              <e p="EmitOnDisable.cs" t="Include" />
+              <e p="EnemyPool.cs" t="Include" />
+              <e p="IPool.cs" t="Include" />
+            </e>
+            <e p="Tower" t="Include">
+              <e p="Bomb.cs" t="Include" />
+              <e p="Tower.cs" t="Include" />
+            </e>
           </e>
           <e p="ObjectConverter.cs" t="Include" />
           <e p="Production" t="Include">
@@ -30,14 +43,10 @@
               </e>
             </e>
             <e p="Globals" t="Include">
-              <e p="MapBuilder.cs" t="Include" />
               <e p="MapReader.cs" t="Include" />
               <e p="ProjectPaths.cs" t="Include" />
               <e p="TileType.cs" t="Include" />
               <e p="UnitType.cs" t="Include" />
-            </e>
-            <e p="Memory Pool" t="Include">
-              <e p="IPool.cs" t="Include" />
             </e>
             <e p="Navigation" t="Include">
               <e p="Dijkstra.cs" t="Include" />
