@@ -344,6 +344,7 @@ MonoBehaviour:
   target: {fileID: 0}
   range: 5
   enemyTag: Enemy
+  rotationSpeed: 5
   towerHead: {fileID: 4511434059114826827}
   fireRate: 1
   bullet: {fileID: 5683678620449206319, guid: dcf79f677ee051f469c1c82b2e049979, type: 3}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemySpawnManager_Map_1
   m_EditorClassIdentifier: 
   health: 5
-  spawnAmount: 5
+  spawnAmount: 50
   enemyType: {fileID: 3358623668188840345, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
     type: 3}
   spawnDelay: 1

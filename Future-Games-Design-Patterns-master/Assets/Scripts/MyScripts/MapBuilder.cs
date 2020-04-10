@@ -88,7 +88,7 @@ public class MapBuilder : MonoBehaviour
                 
                 if (isStartTile)
                 {
-                    startPos = new Vector3(x, 1, z);
+                    startPos = new Vector3(x, 0, z);
                     walkables.Add(startPos);
                     isStartTile = false;
                 }

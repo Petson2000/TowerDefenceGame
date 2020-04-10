@@ -1,39 +1,32 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using Quaternion = UnityEngine.Quaternion;
-using Vector3 = UnityEngine.Vector3;
 
-public class Enemy : MonoBehaviour
+public abstract class EnemyBase : MonoBehaviour
 {
     public float speed;
     
     private GetPath pathGetter = null;
 
-    private Vector3 targetWaypoint;
-    
     private List<Vector3> path;
     private int current = 0;
+
+    public float maxHealth;
+
+    private float currentHealth;
     
     private Vector3 targetPos;
-    
-    private void Start()
+
+    public void Start(float MaxHealth)
     {
+        maxHealth = MaxHealth;
+        currentHealth = maxHealth;
         pathGetter = GetComponent<GetPath>();
-            
         path = pathGetter.CalculatePath();
     }
 
-    private void Update()
-    {
-        Move();
-    }
-
-    private void Push()
-    {
-        
-    }
-
-    private void Move()
+    public void Move()
     {
         targetPos = path[current];
 
@@ -58,6 +51,28 @@ public class Enemy : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
+    }
+    
+    public void Die()
+    {
+        gameObject.SetActive(false);
+        current = 0;
+    }
+    
+    public void OnEnable()
+    {
+        pathGetter = GetComponent<GetPath>();
+        currentHealth = maxHealth;
+        path = pathGetter.CalculatePath();
+    }
+    
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
 
+        if (currentHealth <= 0f)
+        {
+            Die();
+        }
     }
 }

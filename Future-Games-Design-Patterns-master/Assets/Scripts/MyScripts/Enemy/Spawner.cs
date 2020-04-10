@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    private GameObject spawnTile;
-
-    private int instanceID = 0;
-    
     public EnemySpawnManager SpawnManager;
 
     private GameObjectPool enemyPool;

@@ -89,7 +89,13 @@ public class Tower : MonoBehaviour
     {
         GameObject bulletObj = bulletPool.Rent(false);
            // (GameObject)Instantiate(bullet, firePoint.position, Quaternion.identity);
+           Bomb bomb = bulletObj.GetComponent<Bomb>();
            bulletObj.transform.position = firePoint.transform.position;
+
+           if (bomb != null)
+           {
+               bomb.Seek(target);
+           }
            bulletObj.SetActive(true);
     }
 
