@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    private int currentHealth;
+    private int m_currentHealth;
 
     public Slider healthSlider;
 
@@ -13,26 +13,32 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         gameOverText.enabled = false;
-        currentHealth = maxHealth;
+        m_currentHealth = maxHealth;
     }
 
+    /// <summary>
+    /// Update health bar to show current health
+    /// </summary>
     public void SetHealthbar()
     {
-        healthSlider.value = currentHealth;
+        healthSlider.value = m_currentHealth;
     }
 
+    /// <summary>
+    /// Update players health
+    /// </summary>
     public void TakeDamage(int damage)
     {
-        currentHealth -= damage;
+        m_currentHealth -= damage;
         SetHealthbar();
         
-        if (currentHealth <= 0)
+        if (m_currentHealth <= 0)
         {
             GameOver();
         }
     }
 
-    void GameOver()
+    private void GameOver()
     {
         Time.timeScale = 0;
         gameOverText.enabled = true;

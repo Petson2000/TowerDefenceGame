@@ -7,87 +7,97 @@ public abstract class EnemyBase : MonoBehaviour
 
     public int damage = 20;
     
-    private GetPath pathGetter = null;
+    private GetPath m_pathGetter = null;
 
-    private List<Vector3> path;
-    private int current = 0;
-
-    private float maxHealth;
-
-    private float currentHealth;
+    private List<Vector3> m_path;
     
-    private Vector3 targetPos;
+    private int m_currentWaypoint = 0;
 
-    private Spawner spawner;
+    private float m_maxHealth;
 
-    private bool isDead = false;
+    private float m_currentHealth;
+    
+    private Vector3 m_targetPos;
 
-    private PlayerHealth player;
+    private Spawner m_spawner;
+
+    private bool m_isDead = false;
+
+    private PlayerHealth m_player;
 
     public void Start(float MaxHealth)
     {
-        spawner = FindObjectOfType<Spawner>();
-        path = new List<Vector3>();
-        maxHealth = MaxHealth;
-        currentHealth = maxHealth;
-        pathGetter = GetComponent<GetPath>();
-        path = pathGetter.CalculatePath();
-        player = FindObjectOfType<PlayerHealth>();
+        m_spawner = FindObjectOfType<Spawner>();
+        m_path = new List<Vector3>();
+        m_maxHealth = MaxHealth;
+        m_currentHealth = m_maxHealth;
+        m_pathGetter = GetComponent<GetPath>();
+        m_path = m_pathGetter.CalculatePath();
+        m_player = FindObjectOfType<PlayerHealth>();
     }
 
+    /// <summary>
+    /// Move on the calculated path on dijkstra
+    /// </summary>
     public void Move()
     {
-        targetPos = path[current];
+        m_targetPos = m_path[m_currentWaypoint];
 
-        if (transform.position != targetPos)
+        if (transform.position != m_targetPos)
         {
-            Vector3 dir = targetPos - transform.position;
+            Vector3 dir = m_targetPos - transform.position;
             Quaternion lookRotation = Quaternion.LookRotation(dir);
             Vector3 rotation = lookRotation.eulerAngles;
             transform.rotation = Quaternion.Euler(0f, rotation.y, 0f);
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, m_targetPos, speed * Time.deltaTime);
         }
 
         else
         {
-            if (path[current] != path[path.Count - 1])
+            if (m_path[m_currentWaypoint] != m_path[m_path.Count - 1])
             {
-                current++;
+                m_currentWaypoint++;
             }
 
             else
             {
                 gameObject.SetActive(false);
-                spawner.killedEnemies++;
-                player.TakeDamage(damage);
-                isDead = true;
+                m_spawner.killedEnemies++;
+                m_player.TakeDamage(damage);
+                m_isDead = true;
             }
         }
     }
     
+    /// <summary>
+    /// Called when the enemy dies
+    /// </summary>
     public void OnDie()
     {
-            current = 0;
-            spawner.killedEnemies++;
-            isDead = true;
+            m_currentWaypoint = 0;
+            m_spawner.killedEnemies++;
+            m_isDead = true;
     }
     
     public void OnEnable()
     {
-        path = new List<Vector3>();
-        pathGetter = GetComponent<GetPath>();
-        currentHealth = maxHealth;
-        path = pathGetter.CalculatePath();
-        isDead = false;
-        current = 0;
+        m_path = new List<Vector3>();
+        m_pathGetter = GetComponent<GetPath>();
+        m_currentHealth = m_maxHealth;
+        m_path = m_pathGetter.CalculatePath();
+        m_isDead = false;
+        m_currentWaypoint = 0;
     }
     
+    /// <summary>
+    /// Called when the enemy takes damage
+    /// </summary>
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        if (!isDead)
+        m_currentHealth -= damage;
+        if (!m_isDead)
         {
-            if (currentHealth <= 0f)
+            if (m_currentHealth <= 0f)
             {
                 gameObject.SetActive(false);
                 OnDie();

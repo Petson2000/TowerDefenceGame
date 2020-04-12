@@ -16,13 +16,13 @@ public class Spawner : MonoBehaviour
     
     private List<int> amountPerWave = new List<int>();
 
-    private GameObject spawnedEnemy;
+    private GameObject m_spawnedEnemy;
 
     [SerializeField] private MapReader reader;
 
-    private bool firstTimeCalled = true;
-    private bool waveFinished = false;
-    private int waveIndex = 0;
+    private bool m_firstTimeCalled = true;
+    private bool m_waveFinished = false;
+    private int m_waveIndex = 0;
     
     [System.NonSerialized] public int amount;
     [System.NonSerialized] public Vector3 spawnTile;
@@ -34,30 +34,34 @@ public class Spawner : MonoBehaviour
         enemyPool = new GameObjectPool(10, SpawnManager.enemyType, 5, new GameObject("Enemy Parent").transform);
     }
 
-    void GetSpawnWaves()
+    private void GetSpawnWaves()
     {
         amountPerWave = reader.spawnWaves;
     }
 
+    /// <summary>
+    /// Spawns enemies in waves read from the map text file
+    /// </summary>
+    /// <param name="spawnLocation"></param>
     public IEnumerator Spawn(Vector3 spawnLocation)
     {
         finishedSpawning = false;
         
-        if (firstTimeCalled)
+        if (m_firstTimeCalled)
         {
             spawnTile = spawnLocation;
             GetSpawnWaves();
-            firstTimeCalled = false;
+            m_firstTimeCalled = false;
         }
 
-        amount = amountPerWave[waveIndex];
+        amount = amountPerWave[m_waveIndex];
         
         for (int i = 0; i < amount; i++)
         {
-            spawnedEnemy = GetEnemy();
-            currentWave.Add(spawnedEnemy);
-            spawnedEnemy.transform.position = spawnLocation;
-            spawnedEnemy.SetActive(true);
+            m_spawnedEnemy = GetEnemy();
+            currentWave.Add(m_spawnedEnemy);
+            m_spawnedEnemy.transform.position = spawnLocation;
+            m_spawnedEnemy.SetActive(true);
             
             yield return new WaitForSeconds(.5f);
         }
@@ -75,7 +79,7 @@ public class Spawner : MonoBehaviour
         {
             if (killedEnemies >= currentWave.Count)
             {
-                waveIndex++;
+                m_waveIndex++;
                 killedEnemies = 0;
                 currentWave.Clear();
                 finishedSpawning = false;

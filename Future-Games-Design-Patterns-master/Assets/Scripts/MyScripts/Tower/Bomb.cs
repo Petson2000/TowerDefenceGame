@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Bomb : MonoBehaviour
 {
-    private Transform target;
+    private Transform m_target;
 
-    private SphereCollider collider;
+    private SphereCollider m_collider;
 
     public float blastRadius;
 
@@ -13,67 +13,69 @@ public class Bomb : MonoBehaviour
 
     [SerializeField]private float damage;
 
-    private List<GameObject> enemiesInBlastRadius;
+    private List<GameObject> m_enemiesInBlastRadius;
 
-    private Vector3 dir;
+    private Vector3 m_Direction;
 
     private void Awake()
     {
-        enemiesInBlastRadius = new List<GameObject>();
-        collider = GetComponent<SphereCollider>();
-        collider.radius = blastRadius;
+        m_enemiesInBlastRadius = new List<GameObject>();
+        m_collider = GetComponent<SphereCollider>();
+        m_collider.radius = blastRadius;
+    }
+/// <summary>
+/// Set target to passed in transform and calculate direction
+/// </summary>
+    public void CalculateDirection(Transform target)
+    {
+        m_target = target;
+        m_Direction = target.position - transform.position;
     }
 
-    public void Fire(Transform target)
+    private void Update()
     {
-        this.target = target;
-        dir = target.position - transform.position;
-    }
-
-    void Update()
-    {
-        if (target == null)
+        if (m_target == null)
         {
             gameObject.SetActive(false);
         }
 
         float distanceThisFrame = speed * Time.deltaTime;
 
-        if (dir.magnitude <= distanceThisFrame)
+        if (m_Direction.magnitude <= distanceThisFrame)
         {
             //Bomb has hit something
             HitTarget();
             return;
         }
         
-        transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+        transform.Translate(m_Direction.normalized * distanceThisFrame, Space.World);
     }
 
-    void HitTarget() //Deal damage to all enemies in the list
+    private void HitTarget() //Deal damage to all enemies in the list
     {
-        foreach (GameObject enemy in enemiesInBlastRadius)
+        foreach (GameObject enemy in m_enemiesInBlastRadius)
         {
             enemy.GetComponent<EnemyBase>().TakeDamage(damage);
         }
         
         gameObject.SetActive(false);
-        target = null;
+        m_target = null;
     }
 
     private void OnTriggerEnter(Collider other) //Add all enemies in sphere to a list
     {
         if (other.CompareTag("Enemy"))
         {
-            enemiesInBlastRadius.Add(other.gameObject);
+            m_enemiesInBlastRadius.Add(other.gameObject);
             HitTarget();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Enemy") && enemiesInBlastRadius.Contains(other.gameObject))
+        if (other.CompareTag("Enemy") && m_enemiesInBlastRadius.Contains(other.gameObject))
         {
-            enemiesInBlastRadius.Remove(other.gameObject);
+            m_enemiesInBlastRadius.Remove(other.gameObject);
         }
     }
 
@@ -84,6 +86,6 @@ public class Bomb : MonoBehaviour
 
     private void OnDisable()
     {
-        enemiesInBlastRadius.Clear();
+        m_enemiesInBlastRadius.Clear();
     }
 }

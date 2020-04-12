@@ -1,7 +1,7 @@
 ﻿public class Boxymon : EnemyBase
 {
     public float health;
-    public void Start()
+    private void Start()
     {
         base.Start(health);
     }

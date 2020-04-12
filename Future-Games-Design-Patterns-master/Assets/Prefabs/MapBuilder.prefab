@@ -43,17 +43,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd3ed697c00fc4c468d9eeb7e9d4e62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathTile: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
+  m_pathTile: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
     type: 3}
-  towerOne: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
+  m_towerOne: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
-  obstacleTile: {fileID: 5807043221564994009, guid: 146d056a4463e4d4380e1679e4d2e16f,
+  m_obstacleTile: {fileID: 5807043221564994009, guid: 146d056a4463e4d4380e1679e4d2e16f,
     type: 3}
-  towerTwo: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
+  m_towerTwo: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
     type: 3}
-  startTile: {fileID: 6189042043493516721, guid: ddaec73c1732b4af4b5f402d92b9f36f,
+  m_startTile: {fileID: 6189042043493516721, guid: ddaec73c1732b4af4b5f402d92b9f36f,
     type: 3}
-  endTile: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5, type: 3}
+  m_endTile: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5,
+    type: 3}
   cellSize: 2
-  walkables: []
-  textAsset: {fileID: 4900000, guid: 2f8246b41c2107b40b372057cb22be65, type: 3}
+  reader: {fileID: 11400000, guid: fd312d9f61c33f042abd53087277f555, type: 2}

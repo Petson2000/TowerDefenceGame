@@ -8,33 +8,32 @@ public class Tower : MonoBehaviour
 
     public string enemyTag;
     
-    private Spawner enemySpawner;
+    private Spawner m_enemySpawner;
 
-    private MapBuilder builder = null;
+    private MapBuilder m_builder = null;
 
     [Tooltip("Part of turret to rotate")] public Transform towerHead;
 
     public float fireRate = 1f;
 
-    private GameObjectPool bulletPool;
+    private GameObjectPool m_bulletPool;
 
-    private float fireCountDown = 0f;
+    private float m_fireCountDown = 0f;
     
     [SerializeField]private GameObject bullet;
     public Transform firePoint;
     
-    void Start()
+    private void Start()
     {
-        builder = FindObjectOfType<MapBuilder>();
+        m_builder = FindObjectOfType<MapBuilder>();
         
-        bulletPool = new GameObjectPool(5, bullet, 2, new GameObject("Bullet Parent").transform);
-        
+        m_bulletPool = new GameObjectPool(5, bullet, 2, new GameObject("Bullet Parent").transform);
         InvokeRepeating("UpdateTarget", 0.1f, 0.1f );
     }
     
-    void UpdateTarget()
+    private void UpdateTarget()
     {
-        if (!builder.finishedBuilding)
+        if (!m_builder.finishedBuilding)
         {
             return;
         }
@@ -77,24 +76,24 @@ public class Tower : MonoBehaviour
         Vector3 rotation = lookRotation.eulerAngles;
         towerHead.rotation = Quaternion.Euler(0f, rotation.y, 0f);
 
-        if (fireCountDown <= 0f)
+        if (m_fireCountDown <= 0f)
         {
             Shoot();
-            fireCountDown = 1f / fireRate;
+            m_fireCountDown = 1f / fireRate;
         }
 
-        fireCountDown -= Time.deltaTime;
+        m_fireCountDown -= Time.deltaTime;
     }
 
     private void Shoot()
     {
-        GameObject bulletObj = bulletPool.Rent(false);
+        GameObject bulletObj = m_bulletPool.Rent(false);
         Bomb bomb = bulletObj.GetComponent<Bomb>();
         bulletObj.transform.position = firePoint.transform.position;
 
            if (bomb != null)
            {
-               bomb.Fire(target);
+               bomb.CalculateDirection(target);
            }
            bulletObj.SetActive(true);
     }

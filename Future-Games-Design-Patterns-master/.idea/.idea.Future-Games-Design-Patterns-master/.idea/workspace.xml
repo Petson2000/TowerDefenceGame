@@ -78,11 +78,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Memory Pools/EnemyPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Production/Memory Pool/IPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Memory Pools/ListenOnDisable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Memory Pools/IPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EventOrientedProgramming/ReactClasses.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/EventOrientedProgramming/Observer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/Enemy.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/GetPath.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Observer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/EventOrientedProgramming/Observer.cs" />
@@ -91,14 +89,16 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/MapReader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Memory Pools/EmitOnDisable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/EnemyBase.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/UIManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/PlayerHealth.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/Boxymon.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/MapBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Memory Pools/IPool.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Tower/Tower.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Tower/Bomb.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/Boxymon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/MapBuilder.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/GetPath.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/EnemyBase.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/Enemy/Spawner.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MyScripts/PlayerHealth.cs" />
       </list>
     </option>
   </component>
@@ -124,10 +124,10 @@
       <option name="pid" />
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="5512">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="5512" />
+      <option name="pid" />
       <method v="2" />
     </configuration>
   </component>
@@ -165,6 +165,8 @@
       <workItem from="1586678522141" duration="5005000" />
       <workItem from="1586687982453" duration="1271000" />
       <workItem from="1586691379361" duration="24639000" />
+      <workItem from="1586723823626" duration="597000" />
+      <workItem from="1586725266068" duration="1461000" />
     </task>
     <servers />
   </component>
