@@ -1,29 +1,38 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyBase : MonoBehaviour
 {
     public float speed;
+
+    public int damage = 20;
     
     private GetPath pathGetter = null;
 
     private List<Vector3> path;
     private int current = 0;
 
-    public float maxHealth;
+    private float maxHealth;
 
     private float currentHealth;
     
     private Vector3 targetPos;
 
+    private Spawner spawner;
+
+    private bool isDead = false;
+
+    private PlayerHealth player;
+
     public void Start(float MaxHealth)
     {
+        spawner = FindObjectOfType<Spawner>();
+        path = new List<Vector3>();
         maxHealth = MaxHealth;
         currentHealth = maxHealth;
         pathGetter = GetComponent<GetPath>();
         path = pathGetter.CalculatePath();
+        player = FindObjectOfType<PlayerHealth>();
     }
 
     public void Move()
@@ -48,31 +57,41 @@ public abstract class EnemyBase : MonoBehaviour
 
             else
             {
-                this.gameObject.SetActive(false);
+                gameObject.SetActive(false);
+                spawner.killedEnemies++;
+                player.TakeDamage(damage);
+                isDead = true;
             }
         }
     }
     
-    public void Die()
+    public void OnDie()
     {
-        gameObject.SetActive(false);
-        current = 0;
+            current = 0;
+            spawner.killedEnemies++;
+            isDead = true;
     }
     
     public void OnEnable()
     {
+        path = new List<Vector3>();
         pathGetter = GetComponent<GetPath>();
         currentHealth = maxHealth;
         path = pathGetter.CalculatePath();
+        isDead = false;
+        current = 0;
     }
     
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
-
-        if (currentHealth <= 0f)
+        if (!isDead)
         {
-            Die();
+            if (currentHealth <= 0f)
+            {
+                gameObject.SetActive(false);
+                OnDie();
+            }
         }
     }
 }

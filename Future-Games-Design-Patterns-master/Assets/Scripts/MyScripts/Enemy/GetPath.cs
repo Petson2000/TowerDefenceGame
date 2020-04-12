@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AI;
 using UnityEngine;
@@ -11,10 +9,6 @@ public class GetPath : MonoBehaviour
     private Dijkstra pathFinder;
     private List<Vector3> walkableTiles = new List<Vector3>();
     private List<Vector2Int> walkablePositions = new List<Vector2Int>();
-
-    public GameObject testObj;
-    
-    private float delay = 2f;
 
     private IEnumerable<Vector2Int> path;
     private GameObject endTile;
@@ -27,7 +21,7 @@ public class GetPath : MonoBehaviour
     private Vector2Int endTilePos;
     private Vector2Int startTilePos;
 
-    private void Start()
+    private void Awake()
     {
         builder = FindObjectOfType<MapBuilder>();
     }
@@ -37,9 +31,6 @@ public class GetPath : MonoBehaviour
         if (builder.finishedBuilding)
         {
             convertedPath = new List<Vector3>();
-        
-            builder = FindObjectOfType<MapBuilder>();
-            
             walkableTiles = builder.GetWalkableTiles();
         }
 

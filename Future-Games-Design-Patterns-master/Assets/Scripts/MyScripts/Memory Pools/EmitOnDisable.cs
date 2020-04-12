@@ -7,6 +7,6 @@ public class EmitOnDisable : MonoBehaviour
 
     private void OnDisable()
     {
-        OnDisableGameObject?.Invoke(this.gameObject); //If we have at least one listener
+        OnDisableGameObject?.Invoke(this.gameObject); 
     }
 }

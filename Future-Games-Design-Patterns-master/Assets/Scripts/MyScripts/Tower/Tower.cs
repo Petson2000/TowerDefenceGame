@@ -27,9 +27,9 @@ public class Tower : MonoBehaviour
     {
         builder = FindObjectOfType<MapBuilder>();
         
-        bulletPool = new GameObjectPool(30, bullet, 10, new GameObject("Bullet parent").transform);
+        bulletPool = new GameObjectPool(5, bullet, 2, new GameObject("Bullet Parent").transform);
         
-        InvokeRepeating("UpdateTarget", 0.5f, 0.5f );
+        InvokeRepeating("UpdateTarget", 0.1f, 0.1f );
     }
     
     void UpdateTarget()
@@ -39,15 +39,16 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); //Refactor later, very expensive
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag); //Get all enemies
+        
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
         
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject enemy in enemies) //Make sure we target the closest enemy
         {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
 
-            if (distanceToEnemy < shortestDistance)
+            if (distanceToEnemy < shortestDistance) 
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
@@ -71,7 +72,7 @@ public class Tower : MonoBehaviour
             return;
         }
 
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = target.position - transform.position; //Rotate to face target
         Quaternion lookRotation = Quaternion.LookRotation(dir);
         Vector3 rotation = lookRotation.eulerAngles;
         towerHead.rotation = Quaternion.Euler(0f, rotation.y, 0f);
@@ -88,20 +89,13 @@ public class Tower : MonoBehaviour
     private void Shoot()
     {
         GameObject bulletObj = bulletPool.Rent(false);
-           // (GameObject)Instantiate(bullet, firePoint.position, Quaternion.identity);
-           Bomb bomb = bulletObj.GetComponent<Bomb>();
-           bulletObj.transform.position = firePoint.transform.position;
+        Bomb bomb = bulletObj.GetComponent<Bomb>();
+        bulletObj.transform.position = firePoint.transform.position;
 
            if (bomb != null)
            {
-               bomb.Seek(target);
+               bomb.Fire(target);
            }
            bulletObj.SetActive(true);
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

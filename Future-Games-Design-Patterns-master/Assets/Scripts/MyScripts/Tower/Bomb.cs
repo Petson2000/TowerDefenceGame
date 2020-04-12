@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Bomb : MonoBehaviour
@@ -12,7 +11,11 @@ public class Bomb : MonoBehaviour
 
     public float speed = 70f;
 
+    [SerializeField]private float damage;
+
     private List<GameObject> enemiesInBlastRadius;
+
+    private Vector3 dir;
 
     private void Awake()
     {
@@ -21,19 +24,19 @@ public class Bomb : MonoBehaviour
         collider.radius = blastRadius;
     }
 
-    public void Seek(Transform target)
+    public void Fire(Transform target)
     {
         this.target = target;
+        dir = target.position - transform.position;
     }
 
     void Update()
     {
         if (target == null)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
 
-        Vector3 dir = target.position - transform.position;
         float distanceThisFrame = speed * Time.deltaTime;
 
         if (dir.magnitude <= distanceThisFrame)
@@ -46,25 +49,23 @@ public class Bomb : MonoBehaviour
         transform.Translate(dir.normalized * distanceThisFrame, Space.World);
     }
 
-    void HitTarget()
+    void HitTarget() //Deal damage to all enemies in the list
     {
-        Debug.Log("Hit!");
-
         foreach (GameObject enemy in enemiesInBlastRadius)
         {
-            enemy.GetComponent<EnemyBase>().TakeDamage(20f);
+            enemy.GetComponent<EnemyBase>().TakeDamage(damage);
         }
         
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         target = null;
-        //Use observer pattern?
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //Add all enemies in sphere to a list
     {
         if (other.CompareTag("Enemy"))
         {
             enemiesInBlastRadius.Add(other.gameObject);
+            HitTarget();
         }
     }
 

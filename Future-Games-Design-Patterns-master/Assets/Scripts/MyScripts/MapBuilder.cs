@@ -21,10 +21,10 @@ public class MapBuilder : MonoBehaviour
     [System.NonSerialized]public Vector3 startPos;
     [System.NonSerialized]public Vector3 endPos;
 
-    public List<Vector3> walkables = new List<Vector3>();
+    [System.NonSerialized]public List<Vector3> walkables = new List<Vector3>();
 
-    public TextAsset textAsset;
-
+    public MapReader reader;
+    
     [System.NonSerialized]public bool finishedBuilding = false;
     
     private List<String> lines;
@@ -32,13 +32,13 @@ public class MapBuilder : MonoBehaviour
     void Start()
     {
         spawner = FindObjectOfType<Spawner>();
+        reader.ReadFile();
         BuildMap();
     }
 
     public void BuildMap()
     {
-        MapReader reader = new MapReader();
-        lines = reader.ReadFile(textAsset);
+        lines = reader.MapData; //read Map data list from mapreader
 
         for (int lineIndex = lines.Count - 1, rowIndex = 0; lineIndex >= 0; lineIndex--, rowIndex++)
         {
@@ -79,6 +79,7 @@ public class MapBuilder : MonoBehaviour
                 }
 
                 Instantiate(tileType, new Vector3(x, 0, z), Quaternion.identity);
+                
                 
                 if (isWalkable)
                 {

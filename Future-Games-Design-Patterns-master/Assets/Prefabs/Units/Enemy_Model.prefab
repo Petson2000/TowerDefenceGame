@@ -666,7 +666,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf60d4ad2e0bcd4f9730ecbf71c2572, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testObj: {fileID: 7832336476986974497, guid: 050e375dd049a954fb143e133ae7df83, type: 3}
 --- !u!114 &2131754194820250234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,8 +678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a32b92a7c428b042ae572194afe6b37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  maxHealth: 40
+  speed: 15
+  damage: 20
+  health: 20
 --- !u!65 &1456361340411204856
 BoxCollider:
   m_ObjectHideFlags: 0
