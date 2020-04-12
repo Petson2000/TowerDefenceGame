@@ -342,10 +342,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  range: 3
+  range: 4
   enemyTag: Enemy
   towerHead: {fileID: 4511434059114826827}
-  fireRate: 0.5
+  fireRate: 0.75
   bullet: {fileID: 5683678620449206319, guid: dcf79f677ee051f469c1c82b2e049979, type: 3}
   firePoint: {fileID: 6271080624531528073}
 --- !u!1 &7391422965515881056
